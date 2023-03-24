@@ -1,10 +1,6 @@
 name: C++
 
-on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+on: [push]
 
 jobs:
   build:
@@ -24,4 +20,3 @@ jobs:
           # Download and unpack sources
           wget -O opencv.zip https://github.com/opencv/opencv/archive/4.x.zip
           unzip opencv.zip
-          

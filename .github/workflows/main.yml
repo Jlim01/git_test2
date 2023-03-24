@@ -28,6 +28,6 @@ jobs:
           chmod +x *.cpp
           chmod +x *.out
           echo "===== Testing started ====="
-          ./test
+          ./a.out
           echo "===== Testing finished =====" 
         

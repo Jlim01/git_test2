@@ -21,14 +21,13 @@ jobs:
       - name: Install OpenCV4
         run: |
           wget -O opencv.zip https://github.com/opencv/opencv/archive/3.4.0.zip
-          unzip 3.4.0.zip
-          rm 3.4.0.zip
+          unzip opencv.zip
           wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/3.4.0.zip
-          unzip 3.4.0.zip
-          rm 3.4.0.zip
-          sudo apt install libopencv-dev
+          
           mv opencv-3.4.0 opencv
+          unzip opencv_contrib.zip
           mv opencv_contrib-3.4.0 opencv_contrib
+          sudo apt install libopencv-dev
           cd opencv
           mkdir build
           cd build

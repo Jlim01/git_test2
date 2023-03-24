@@ -26,6 +26,7 @@ jobs:
       - name: Run code test suite
         run: |
           chmod +x *.cpp
+          chmod +x *.out
           echo "===== Testing started ====="
           ./test
           echo "===== Testing finished =====" 

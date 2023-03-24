@@ -19,6 +19,7 @@ jobs:
           sudo apt update && sudo apt install -y cmake g++ wget unzip
           # Download and unpack sources
       - name: Install OpenCV4
+        run: |
           wget -O opencv.zip https://github.com/opencv/opencv/archive/4.x.zip
           unzip opencv.zip
 

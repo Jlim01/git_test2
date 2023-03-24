@@ -22,6 +22,7 @@ jobs:
         run: |
           wget -O opencv.zip https://github.com/opencv/opencv/archive/4.x.zip
           unzip opencv.zip
+          sudo apt install libopencv-dev
       - name: Run code test suite
         run: |
           chmod +x *.cpp

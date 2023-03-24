@@ -1,0 +1,35 @@
+name: C++
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install libboost-dev
+          # Install minimal prerequisites (Ubuntu 18.04 as reference)
+          sudo apt update && sudo apt install -y cmake g++ wget unzip
+          # Download and unpack sources
+          wget -O opencv.zip https://github.com/opencv/opencv/archive/4.x.zip
+          unzip opencv.zip
+          
+      - name: Run CMake
+        run: |
+          # Create build directory
+          mkdir -p build && cd build
+          # Configure
+          cmake  ../opencv-4.x
+          # Build
+          cmake --build .

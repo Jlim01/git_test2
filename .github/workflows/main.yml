@@ -24,7 +24,7 @@ jobs:
           unzip opencv.zip
       - name: Run code test suite
         run: |
-          chmod +x .cpp
+          chmod +x *.cpp
           echo "===== Testing started ====="
           g++ test.cpp -o test -I/opencv2/include/ -lopencv_core -lopencv_highgui -lopencv_imgcodecs -lopencv_imgproc -lopencv_videoio
           ./test

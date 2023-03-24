@@ -25,8 +25,3 @@ jobs:
           wget -O opencv.zip https://github.com/opencv/opencv/archive/4.x.zip
           unzip opencv.zip
           
-      - name: Run CMake
-      - uses: actions/checkout@v2
-      - uses: Dovyski/setup-opencv-action@v1.1
-        with:
-          opencv-version: '4.0.0'

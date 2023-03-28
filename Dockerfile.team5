@@ -1,0 +1,30 @@
+FROM ubuntu:latest
+
+LABEL maintainer="June Kim" version="1.0"
+
+ENV DEBIAN_FRONTEND=noninteractive \
+  NEEDRESTART_MODE=a \
+  DEBIAN_PRIORITY=critical \
+  TZ=Etc/UTC
+
+# Install Open3D system dependencies and pip
+RUN apt-get update \
+  && apt-get install --no-install-recommends -qq -y \
+    libgl1 \
+    libgomp1 \
+    python3-pip \
+    git \
+  && rm -rf /var/lib/apt/lists/*
+
+# Install Open3D from the PyPI repositories
+RUN python3 -m pip install --no-cache-dir --upgrade pip && \
+    python3 -m pip install --no-cache-dir --upgrade open3d
+
+# Clone codes to execute
+WORKDIR /Open3D
+RUN git clone https://github.com/isl-org/Open3D.git .
+
+VOLUME [ "/dataset" ]
+
+WORKDIR /Open3D/examples/python/t_reconstruction_system
+CMD [ "python3 dense_slam_gui.py --device CPU:0 --path_dataset /dataset"  ]

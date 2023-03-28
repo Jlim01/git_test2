@@ -1,0 +1,24 @@
+FROM ghcr.io/junekimdev/kdt-ad4-team5-week17-18:stella-base-1.0
+ENV DEBIAN_FRONTEND noninteractive
+ENV DEBCONF_NOWARNINGS yes
+ARG CMAKE_INSTALL_PREFIX=/usr/local
+ARG NUM_THREADS=1
+
+# stella_vslam
+WORKDIR /stella_vslam
+RUN set -x && \
+  git clone --recursive https://github.com/stella-cv/stella_vslam.git . && \
+  mkdir -p build && \
+  cd build && \
+  cmake \
+    -DUSE_PANGOLIN_VIEWER=ON \
+    -DBUILD_EXAMPLES=ON \
+    -DUSE_STACK_TRACE_LOGGER=ON \
+    -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+    .. && \
+  make -j${NUM_THREADS} && \
+  rm -rf CMakeCache.txt CMakeFiles Makefile cmake_install.cmake example src && \
+  chmod -R 777 ./*
+
+WORKDIR /stella_vslam/build/
+ENTRYPOINT ["/bin/bash"]
